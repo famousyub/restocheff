@@ -1,0 +1,67 @@
+
+<diV class="container">
+
+  <a href="http://localhost:9088/calcul.html" target="_blank"> calc</a>
+ 
+</diV>
+
+    <div class="jumbotron" id="invoice" #invoice>
+        <div class="container" *ngIf="chefsorders">
+            <h2>orders</h2>
+            <p>order clients </p>  
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">          
+            <table class="table table-dark table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>tableid</th>
+                  <th>quantity</th>
+                  <th>prices</th>
+                  <th>confirme</th>
+                
+                </tr>
+              </thead>
+              <tbody id="myTable">
+                <tr *ngFor="let chef of chefsorders">
+                  <td>{{chef.tableId}}</td>
+                  <td>{{chef.quantity}}</td>
+                  <td>{{chef.totalPrice| currency}} Dt</td>
+        
+                  <td>
+                    <p>check </p>  <button (click)="generatePDF()">
+                        confirme {{orderId}}
+                    </button>
+
+                    <button (click)="showToasterSuccess()">confirm</button>
+                  </td>
+               
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+
+
+
+
+         <div>
+            <div>
+                <div>
+                    <p>invoice </p>
+                </div>
+            </div>
+         </div>
+
+         <pdf-viewer [src]="pdfSrc"
+         [render-text]="true"
+         [original-size]="false"
+         style="width: 100%; height: 800px"
+        ></pdf-viewer>
+
+         
+        
+    </div>
+
+  
+  
+  

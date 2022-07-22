@@ -1,0 +1,29 @@
+<table>
+    <caption>order notif</caption>
+
+    <thead>
+        <tr>
+            <th>recipe_id</th>
+            <th>table_id</th>
+            <th>quantity</th>
+            <th>order_id</th>
+        </tr>
+    </thead>
+
+    <tbody  *ngIf="nots">
+        <tr *ngFor="let n of nots.response">
+            <td>
+                {{n.recipe_id}}
+            </td>
+            <td>
+                {{n.table_id}}
+            </td>
+            <td>
+                {{n.quantity}}
+            </td>
+            <td>
+                {{n.order_id}}
+            </td>
+        </tr>
+    </tbody>
+</table>

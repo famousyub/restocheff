@@ -1,0 +1,146 @@
+
+<app-chefnotif></app-chefnotif>
+
+
+<diV *ngIf="chef_">
+
+  <a href="http://localhost:9088/data.html"  target="_blank" >calculator </a>
+
+
+  <div class="jumbotron">
+
+   
+     <h2>   {{chef_.chef_id}} </h2>
+        <p>
+            {{chef_.chef_name}}
+        </p>
+        <img [src]="'data:image/jpg;base64,'+chef_.description"   height="80"  width="80"  />
+   
+
+
+  </div>
+
+</diV>
+
+
+    
+    <div class="container" *ngIf="chefsorders">
+        <h2>orders</h2>
+        <p>order clients </p>  
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">          
+        <table class="table table-dark table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>tableid</th>
+              <th>quantity</th>
+              <th>prices</th>
+              <th>status</th>
+              <th>orderproducts</th>
+              <th>orderdetails</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            <tr *ngFor="let chef of chefsorders">
+              <td>{{chef.id}}</td>
+              <td>{{chef.numberOfProducts}}</td>
+              <td>{{chef.totalPrice| currency}}    {{chef.totalOrderPrice|currency}}Dt</td>
+              <td>{{chef.status}}</td>
+    
+    
+              <td>
+    
+                <table>
+    
+                    <thead>
+                        <tr>
+                          <th>tableid</th>
+                          <th>quantity</th>
+                         
+                        </tr>
+                       </thead>
+    
+                       <tbody>
+                        <tr *ngFor="let ch of  chef.orderProducts">
+                            <td>
+                                {{ch.tableId}}
+                            </td>
+                             <td>
+                                {{ch.quantity}}
+                             </td>
+                        </tr>
+                       </tbody>
+    
+                </table>
+                
+              </td>
+              <td>
+                <a 
+                [routerLink]="['/order',chef.id]">
+                {{ chef.id }} view order 
+              </a>
+    
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      
+    
+      <div class="row justify-content-center">
+        <table *ngIf="cheforder">
+    
+    
+            <tr>
+              <th>recipe_id</th>
+              <th>order_id</th>
+              <th>table_id</th>
+              <th>quantity</th>
+            </tr>
+      
+            <tr *ngFor="let or of cheforder.records ">
+      
+              <td>
+                  {{or.recipe_id}}
+              </td>
+      
+              <td>
+                  {{or.order_id}}
+              </td>
+      
+      
+              <td>
+                  {{or.table_id}}
+              </td>
+      
+              <td>
+                  {{or.quantity}}
+              </td>
+      
+            </tr>
+      </table>
+      
+      
+      </div>
+      <div class="jumbotron">
+
+        <button (click)="showToasterSuccess()">
+         order success
+      </button>
+        
+      <button (click)="showToasterError()">
+          Error order
+      </button>
+        
+      <button (click)="showToasterInfo()">
+          Info order
+      </button>
+        
+      <button (click)="showToasterWarning()">
+          Warning order
+      </button>
+      </div>
+
+
+      <app-calculator></app-calculator>
+      <!-- <app-calc></app-calc> -->
